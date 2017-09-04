@@ -4,6 +4,8 @@
   // require the config
   require_once 'inc/config.php';
   ForceLogin();
+
+  $user = new User($_SESSION['user_id']);
 ?>
 
   <!DOCTYPE html>
@@ -25,9 +27,11 @@
   <body>
 
     <div class="uk-section uk-container">
+      <h1>Dashboard</h1>
+      <p>Hello
       <?php
-      echo "Hello, world! Today is: ";
-      echo date("Y m d");
+
+      echo $user->email.', you registered at '.date('F j, Y, g:i a', time($user->reg_time));
     ?>
         <p>
           <a href="logout.php">Logout</a>

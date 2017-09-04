@@ -12,14 +12,12 @@
     $password = Filter::String($_POST['password']);
 
     // make sure user does not exist
-    $findUser = $con->prepare("SELECT user_id, password FROM users WHERE email = LOWER(:email) LIMIT 1");
-    $findUser->bindParam(':email', $email, PDO::PARAM_STR);
-    $findUser->execute();
+    $user_found = User::Find($email, true);
 
     // var_dump($findUser->rowCount()==1);
-    if($findUser->rowCount() == 1){
+    if($user_found){
 
-      $user = $findUser->fetch(PDO::FETCH_ASSOC);
+      $user = $user_found;
       $user_id = (int)$user['user_id'];
 
       $hash = $user['password'];

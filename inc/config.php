@@ -15,13 +15,14 @@ if(!defined('__CONFIG__')) {
 define('__SITE_ROOT__', '/login/');
 
 //Allow Errors
-// error_reporting(-1);
-// ini_set('display_errors', 'On');
-// error_reporting(E_ALL); ini_set('display_errors', 1);
+error_reporting(-1);
+ini_set('display_errors', 'On');
+error_reporting(E_ALL); ini_set('display_errors', 1);
 
 
 // Include db.php
 include_once 'classes/db.php';
+include_once 'classes/user.php';
 include_once 'classes/filter.php';
 include_once 'functions.php';
 
