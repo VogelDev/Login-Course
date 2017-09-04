@@ -3,7 +3,7 @@
   define('__CONFIG__', true);
   // require the config
   require_once 'inc/config.php';
-  ForceLogin();
+  Page::ForceLogin();
 
   $user = new User($_SESSION['user_id']);
 ?>
