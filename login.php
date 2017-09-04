@@ -1,8 +1,8 @@
-<?
+<?php
   // Allow the config
   define('__CONFIG__', true);
   // require the config
-  php require_once 'inc/config.php';
+  require_once 'inc/config.php';
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-<? require_once "inc/footer.php"; ?>
+    <?php require_once "inc/footer.php"; ?>
 </body>
 
 </html>
