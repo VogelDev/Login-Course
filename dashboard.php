@@ -3,10 +3,9 @@
   define('__CONFIG__', true);
   // require the config
   require_once 'inc/config.php';
-  if(!isset($_SESSION['user_id'])){
-    header('Location:'.__SITE_ROOT__.'index.php');
-  }
+  ForceLogin();
 ?>
+
   <!DOCTYPE html>
   <html land="en">
 

@@ -23,6 +23,7 @@ define('__SITE_ROOT__', '/login/');
 // Include db.php
 include_once 'classes/db.php';
 include_once 'classes/filter.php';
+include_once 'functions.php';
 
 $con = DB::getConnection();
 

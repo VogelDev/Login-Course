@@ -26,14 +26,14 @@
 
       if(password_verify($password, $hash)){
         $_SESSION['user_id'] = $user_id;
-        $return['redirect'] = __SITE_ROOT__.'/dashboard.php';
+        $return['redirect'] = __SITE_ROOT__.'dashboard.php';
         $return['is_logged_in'] = true;
       }else{
         $return['error'] = 'Invalid username or password';
       }
 
     }else{
-      $return['error'] = "You do not have an account. <a href='".__SITE_ROOT__."/register.php'>Register here</a>";
+      $return['error'] = "You do not have an account. <a href='".__SITE_ROOT__."register.php'>Register here</a>";
       $return['is_logged_in'] = false;
     }
 
