@@ -1,14 +1,14 @@
 $(document).on("submit", "form.js-register", function(e){
-  ajaxLogHandler('register', e);
+  ajaxLogHandler(this,'register', e);
 })
 .on("submit", "form.js-login", function(e){
-  ajaxLogHandler('login', e);
+  ajaxLogHandler(this, 'login', e);
 })
 
-function ajaxLogHandler(action, event){
+function ajaxLogHandler(form, action, event){
   event.preventDefault();
 
-  var $form = $(this);
+  var $form = $(form);
   var $error = $(".js-error", $form);
   $error.hide();
   var data = {
@@ -40,7 +40,7 @@ function ajaxLogHandler(action, event){
       window.location = data.redirect;
     }else if (data.error !== undefined){
       $error
-        .text(data.error)
+        .html(data.error)
         .show();
     }
   })

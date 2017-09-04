@@ -30,7 +30,7 @@
       $user_id = $con->lastInsertId();
 
       $_SESSION['user_id'] = (int)$user_id;
-      $return['redirect'] = '/dashboard.php';
+      $return['redirect'] = __SITE_ROOT__.'/dashboard.php';
       $return['is_logged_in'] = true;
     }
 
