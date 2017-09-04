@@ -30,10 +30,7 @@
       echo date("Y m d");
     ?>
         <p>
-          <a href="login.php">Login</a>
-        </p>
-        <p>
-          <a href="register.php">Register</a>
+          <a href="logout.php">Logout</a>
         </p>
     </div>
 
