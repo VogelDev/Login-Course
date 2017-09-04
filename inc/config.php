@@ -9,7 +9,14 @@ if(!defined('__CONFIG__')) {
 
 define('__SITE_ROOT__', '/login/');
 
+//Allow Errors
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
+
+
 // Include db.php
 include_once 'classes/db.php';
+include_once 'classes/filter.php';
 
 $con = DB::getConnection();

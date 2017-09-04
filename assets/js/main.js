@@ -1,5 +1,12 @@
 $(document).on("submit", "form.js-register", function(e){
-  e.preventDefault();
+  ajaxLogHandler('register', e);
+})
+.on("submit", "form.js-login", function(e){
+  ajaxLogHandler('login', e);
+})
+
+function ajaxLogHandler(action, event){
+  event.preventDefault();
 
   var $form = $(this);
   var $error = $(".js-error", $form);
@@ -23,22 +30,26 @@ $(document).on("submit", "form.js-register", function(e){
 
   $.ajax({
     type:'POST',
-    url:'/login/ajax/register.php',
+    url:'/login/ajax/'+action+'.php',
     data:data,
     dataType:'json',
     async:true,
   })
   .done(function(data){
     if(data.redirect !== undefined){
-      // window.location = data.redirect;
+      window.location = data.redirect;
+    }else if (data.error !== undefined){
+      $error
+        .text(data.error)
+        .show();
     }
   })
   .fail(function(e){
-
+    console.log(e);
   })
   .always(function(data){
 
   });
 
   return false;
-})
+}

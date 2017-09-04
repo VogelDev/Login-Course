@@ -8,17 +8,35 @@
     header('Content-Type: application/json');
     $return = [];
 
+    $email = Filter::String($_POST['email']);
+
     // make sure user does not exist
+    $findUser = $con->prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1");
+    $findUser->bindParam(':email', $email, PDO::PARAM_STR);
+    $findUser->execute();
 
-    // make sure user can be added and is added
+    if($findUser->rowCount() == 1){
+      $return['error'] = 'You already have an account';
+      $return['is_logged_in'] = false;
+    }else{
 
-    // return the proper information to js to redirect
+      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $return['redirect'] = '/dashboard.php';
+      $addUser = $con->prepare("INSERT INTO users (email, password) VALUES(LOWER(:email), :password)");
+      $addUser->bindParam(':email', $email, PDO::PARAM_STR);
+      $addUser->bindParam(':password', $password, PDO::PARAM_STR);
+      $addUser->execute();
+
+      $user_id = $con->lastInsertId();
+
+      $_SESSION['user_id'] = (int)$user_id;
+      $return['redirect'] = '/dashboard.php';
+      $return['is_logged_in'] = true;
+    }
 
     echo json_encode($return, JSON_PRETTY_PRINT);
     exit;
   }
   else{
-      exit('test');
+      exit('INVALID URL');
   }
